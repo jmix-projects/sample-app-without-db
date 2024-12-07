@@ -3,59 +3,55 @@ package com.company.demo.entity;
 import io.jmix.core.HasTimeZone;
 import io.jmix.core.annotation.Secret;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.JmixId;
 import io.jmix.core.entity.annotation.SystemLevel;
 import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.JmixProperty;
 import io.jmix.security.authentication.JmixUserDetails;
-import org.springframework.security.core.GrantedAuthority;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import org.springframework.security.core.GrantedAuthority;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
 
-@JmixEntity
-@Entity
-@Table(name = "USER_", indexes = {
-        @Index(name = "IDX_USER__ON_USERNAME", columnList = "USERNAME", unique = true)
-})
+@JmixEntity(annotatedPropertiesOnly = true)
 public class User implements JmixUserDetails, HasTimeZone {
 
-    @Id
-    @Column(name = "ID")
+    @JmixProperty
+    @JmixId
     @JmixGeneratedValue
     private UUID id;
 
-    @Version
-    @Column(name = "VERSION", nullable = false)
+    @JmixProperty
     private Integer version;
 
-    @Column(name = "USERNAME", nullable = false)
+    @JmixProperty
     private String username;
 
+    @JmixProperty
     @Secret
     @SystemLevel
-    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "FIRST_NAME")
+    @JmixProperty
     private String firstName;
 
-    @Column(name = "LAST_NAME")
+    @JmixProperty
     private String lastName;
 
     @Email
-    @Column(name = "EMAIL")
+    @JmixProperty
     private String email;
 
-    @Column(name = "ACTIVE")
+    @JmixProperty
     private Boolean active = true;
 
-    @Column(name = "TIME_ZONE_ID")
+    @JmixProperty
     private String timeZoneId;
 
-    @Transient
     private Collection<? extends GrantedAuthority> authorities;
 
     public UUID getId() {

@@ -32,19 +32,19 @@ public class Demo1Application implements AppShellConfigurator {
         SpringApplication.run(Demo1Application.class, args);
     }
 
-    @Bean
-    @Primary
-    @ConfigurationProperties("main.datasource")
-    DataSourceProperties dataSourceProperties() {
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    @Primary
-    @ConfigurationProperties("main.datasource.hikari")
-    DataSource dataSource(final DataSourceProperties dataSourceProperties) {
-        return dataSourceProperties.initializeDataSourceBuilder().build();
-    }
+//    @Bean
+//    @Primary
+//    @ConfigurationProperties("main.datasource")
+//    DataSourceProperties dataSourceProperties() {
+//        return new DataSourceProperties();
+//    }
+//
+//    @Bean
+//    @Primary
+//    @ConfigurationProperties("main.datasource.hikari")
+//    DataSource dataSource(final DataSourceProperties dataSourceProperties) {
+//        return dataSourceProperties.initializeDataSourceBuilder().build();
+//    }
 
     @EventListener
     public void printApplicationUrl(final ApplicationStartedEvent event) {
